@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts em Carrossel — Guia Prático</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0f0f0f;
+    --white: #f5f2eb;
+    --cream: #ede9df;
+    --accent: #e8501a;
+    --accent2: #1a3de8;
+    --mid: #6b6560;
+    --slide-w: 900px;
+  }
+
+  html { background: #1a1814; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #1a1814;
+    color: var(--white);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .deck {
+    max-width: var(--slide-w);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  /* nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #1a1814;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(245,242,235,0.1);
+    max-width: var(--slide-w);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,235,0.4);
+  }
+  .nav-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(245,242,235,0.2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .nav-dot.active { background: var(--accent); width: 18px; border-radius: 3px; }
+
+  /* slide base */
+  .slide {
+    background: var(--cream);
+    color: var(--black);
+    min-height: 540px;
+    padding: 3rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .slide.visible { display: flex; }
+
+  .slide-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(15,15,15,0.3);
+    margin-bottom: 2.5rem;
+  }
+
+  /* slide 1 — capa */
+  .slide-cover {
+    background: var(--black);
+    color: var(--white);
+  }
+  .slide-cover .cover-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,242,235,0.3);
+    margin-bottom: 3rem;
+  }
+  .slide-cover h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .slide-cover h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .slide-cover .cover-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(245,242,235,0.55);
+    max-width: 380px;
+    line-height: 1.6;
+  }
+  .cover-deco {
+    position: absolute;
+    bottom: -60px;
+    right: -40px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,80,26,0.2);
+  }
+  .cover-deco2 {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,80,26,0.15);
+  }
+  .cover-deco3 {
+    position: absolute;
+    bottom: 40px;
+    right: 100px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.9;
+  }
+
+  /* slides — títulos gerais */
+  .slide h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .slide h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .slide p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(15,15,15,0.75);
+    max-width: 600px;
+  }
+  .slide p strong {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* stat block */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(15,15,15,0.08);
+    margin-top: 2rem;
+  }
+  .stat-box {
+    background: var(--cream);
+    padding: 1.25rem 1.5rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(15,15,15,0.5);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+  }
+  .stat-source {
+    font-size: 0.65rem;
+    color: rgba(15,15,15,0.3);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  /* platform badges */
+  .platform-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .pb-ig { background: #f9e7ff; color: #7b1fa2; }
+  .pb-li { background: #e3f0ff; color: #0a52a4; }
+  .pb-tt { background: #ffe8f0; color: #b01c4e; }
+
+  /* funnel diagram */
+  .funnel-wrap {
+    display: flex;
+    gap: 0;
+    margin-top: 2rem;
+  }
+  .funnel-stage {
+    flex: 1;
+    position: relative;
+  }
+  .funnel-bar {
+    height: 8px;
+    margin-bottom: 1rem;
+  }
+  .funnel-bar.top { background: var(--accent); }
+  .funnel-bar.mid { background: var(--accent2); }
+  .funnel-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(15,15,15,0.4);
+    margin-bottom: 0.5rem;
+  }
+  .funnel-format {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .funnel-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(15,15,15,0.6);
+  }
+  .funnel-divider {
+    width: 1px;
+    background: rgba(15,15,15,0.1);
+    align-self: stretch;
+    margin: 0 2rem;
+  }
+
+  /* algo card */
+  .algo-card {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 0;
+    padding: 1.5rem 2rem;
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .algo-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--accent);
+  }
+  .algo-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,235,0.4);
+    margin-bottom: 0.5rem;
+  }
+  .algo-card p {
+    color: rgba(245,242,235,0.85);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  /* specs table */
+  .specs-wrap {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: rgba(15,15,15,0.06);
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr 1fr;
+    background: var(--cream);
+    gap: 0;
+  }
+  .spec-row.header {
+    background: var(--black);
+    color: var(--white);
+  }
+  .spec-cell {
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    border-right: 1px solid rgba(15,15,15,0.06);
+    line-height: 1.4;
+  }
+  .spec-row.header .spec-cell {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,242,235,0.5);
+    border-right-color: rgba(245,242,235,0.08);
+  }
+  .spec-cell:first-child {
+    font-weight: 500;
+    color: rgba(15,15,15,0.55);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .spec-row.header .spec-cell:first-child { color: rgba(245,242,235,0.4); }
+  .spec-highlight { color: var(--accent); font-weight: 500; }
+
+  /* how-to steps */
+  .platform-section {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(15,15,15,0.06);
+  }
+  .platform-block {
+    background: var(--cream);
+    padding: 1.25rem 1.5rem;
+  }
+  .platform-block-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .platform-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .pi-ig { background: #f9e7ff; }
+  .pi-li { background: #e3f0ff; }
+  .pi-tt { background: #ffe8f0; }
+  .platform-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(15,15,15,0.5);
+  }
+  .steps-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0;
+    align-items: center;
+  }
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    color: rgba(15,15,15,0.7);
+  }
+  .step-item + .step-item::before {
+    content: '→';
+    color: rgba(15,15,15,0.25);
+    font-size: 0.75rem;
+    margin-right: 0.1rem;
+  }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    color: rgba(15,15,15,0.3);
+  }
+
+  /* engagement visual */
+  .engage-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .engage-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .engage-label {
+    width: 90px;
+    font-size: 0.78rem;
+    color: rgba(15,15,15,0.55);
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .engage-bar-wrap {
+    flex: 1;
+    background: rgba(15,15,15,0.06);
+    height: 10px;
+    position: relative;
+  }
+  .engage-bar-fill {
+    height: 100%;
+    transition: width 0.6s ease;
+  }
+  .engage-val {
+    width: 55px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+
+  /* tips grid */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(15,15,15,0.06);
+    margin-top: 1.5rem;
+  }
+  .tip-box {
+    background: var(--cream);
+    padding: 1.25rem 1.5rem;
+  }
+  .tip-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: rgba(15,15,15,0.08);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .tip-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: var(--black);
+  }
+  .tip-text {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgba(15,15,15,0.6);
+  }
+
+  /* final slide */
+  .slide-final {
+    background: var(--accent);
+    color: var(--white);
+  }
+  .slide-final h2 {
+    color: var(--white);
+  }
+  .slide-final p { color: rgba(245,242,235,0.8); max-width: 500px; }
+  .final-summary {
+    display: flex;
+    gap: 2px;
+    background: rgba(245,242,235,0.15);
+    margin-top: 2rem;
+  }
+  .final-item {
+    flex: 1;
+    background: rgba(0,0,0,0.15);
+    padding: 1rem 1.25rem;
+  }
+  .final-item-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .final-item-text {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgba(245,242,235,0.8);
+  }
+
+  /* bottom bar */
+  .slide-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+  .slide-footer-label {
+    font-size: 0.7rem;
+    color: rgba(15,15,15,0.25);
+    font-style: italic;
+  }
+
+  /* nav buttons */
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    max-width: var(--slide-w);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-nav {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid rgba(245,242,235,0.2);
+    background: transparent;
+    color: rgba(245,242,235,0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-nav:hover {
+    background: rgba(245,242,235,0.08);
+    color: var(--white);
+    border-color: rgba(245,242,235,0.4);
+  }
+  .btn-nav.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+  .btn-nav.primary:hover {
+    background: #d43e0f;
+    border-color: #d43e0f;
+    color: var(--white);
+  }
+
+  .slide-final .slide-footer-label { color: rgba(245,242,235,0.4); }
+
+  .accent-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .slide { padding: 2rem; min-height: auto; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .spec-row { grid-template-columns: 80px 1fr 1fr; }
+    .spec-row .spec-cell:nth-child(4) { display: none; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .funnel-wrap { flex-direction: column; gap: 1.5rem; }
+    .funnel-divider { width: 100%; height: 1px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-title">Posts em Carrossel</span>
+  <div class="nav-dots" id="dotContainer"></div>
+</nav>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: CAPA -->
+  <div class="slide slide-cover visible" data-slide="1">
+    <div class="cover-tag">Guia de Conteúdo Digital · 2025–2026</div>
+    <div>
+      <h1>Posts em<br><em>Carrossel</em><br>— o que são<br>e porquê importam</h1>
+      <p class="cover-sub">O formato que gera mais envolvimento nas redes sociais, explicado de forma simples.</p>
+    </div>
+    <div class="cover-deco"></div>
+    <div class="cover-deco2"></div>
+    <div class="cover-deco3"></div>
+  </div>
+
+  <!-- SLIDE 2: O QUE É -->
+  <div class="slide" data-slide="2">
+    <div class="accent-bar"></div>
+    <div class="slide-num">01 — O que é um carrossel</div>
+    <div>
+      <h2>Uma publicação,<br>várias <em>páginas</em></h2>
+      <p>Um post em carrossel é uma publicação com múltiplos slides — como um mini-livro ou uma apresentação que o utilizador pode deslizar com o dedo. Cada slide é uma página nova, com a sua própria imagem ou texto.</p>
+
+      <div class="platform-row" style="margin-top:1.5rem;">
+        <span class="platform-badge pb-ig">📷 Instagram</span>
+        <span class="platform-badge pb-li">💼 LinkedIn</span>
+        <span class="platform-badge pb-tt">🎵 TikTok</span>
+      </div>
+
+      <p>É um formato <strong>exclusivo destas três plataformas</strong>. No LinkedIn, o carrossel é criado carregando um ficheiro PDF — cada página torna-se um slide. No Instagram e TikTok, as imagens são carregadas diretamente.</p>
+    </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label">Disponível no Instagram, LinkedIn e TikTok</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: DADOS DE ENGAGEMENT -->
+  <div class="slide" data-slide="3">
+    <div class="accent-bar"></div>
+    <div class="slide-num">02 — Os números não mentem</div>
+    <div>
+      <h2>Mais envolvimento<br>do que <em>qualquer outro</em><br>formato</h2>
+      <p>Estudos analisando dezenas de milhões de publicações confirmam: os carrosséis geram consistentemente mais interações do que imagens simples ou vídeos.</p>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="stat-num">3×</div>
+          <div class="stat-label">mais envolvimento no LinkedIn vs. imagens e vídeos</div>
+          <div class="stat-source">Social Media Today, 2025</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">109%</div>
+          <div class="stat-label">mais interações por pessoa no Instagram vs. Reels</div>
+          <div class="stat-source">Buffer, análise de 45M+ posts</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">21,8%</div>
+          <div class="stat-label">taxa de envolvimento média dos carrosséis no LinkedIn</div>
+          <div class="stat-source">Buffer State of Social, 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label">Fontes: Buffer, Social Media Today, Social Insider — 2025/2026</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: PORQUÊ FUNCIONA -->
+  <div class="slide" data-slide="4">
+    <div class="accent-bar"></div>
+    <div class="slide-num">03 — Porquê funciona tão bem</div>
+    <div>
+      <h2>Dois tipos de<br><em>envolvimento</em></h2>
+      <p>O carrossel funciona em dois níveis ao mesmo tempo:</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(15,15,15,0.06); margin-top:1.25rem;">
+        <div style="background:var(--cream); padding:1.5rem;">
+          <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.75rem;">Envolvimento de conteúdo</div>
+          <p style="font-size:0.88rem; line-height:1.6; color:rgba(15,15,15,0.7);">O utilizador <strong>envolve-se com o tema</strong> — lê mais, aprende mais, explora mais. Um único slide não permite profundidade; o carrossel permite desenvolver uma ideia, contar uma história, apresentar um processo passo a passo.</p>
+        </div>
+        <div style="background:var(--cream); padding:1.5rem;">
+          <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.75rem;">Envolvimento de plataforma</div>
+          <p style="font-size:0.88rem; line-height:1.6; color:rgba(15,15,15,0.7);">Cada deslize é um <strong>sinal de interação</strong> para o algoritmo. Tempo de visualização, cliques, deslizes, guardados — o carrossel multiplica todos estes sinais numa só publicação, sinalizando ao algoritmo que o conteúdo é relevante.</p>
+        </div>
+      </div>
+
+      <div class="algo-card">
+        <div class="algo-card-title">Como o algoritmo lê isto</div>
+        <p>Quanto mais tempo alguém passa na publicação e mais ações realiza (deslizar, guardar, comentar), mais o algoritmo considera que o conteúdo é valioso — e mais o distribui a outras pessoas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: PODER ESPECIAL INSTAGRAM -->
+  <div class="slide" data-slide="5">
+    <div class="accent-bar"></div>
+    <div class="slide-num">04 — O poder especial do Instagram</div>
+    <div>
+      <h2>O único formato que<br>aparece <em>duas vezes</em><br>no feed</h2>
+      <p>No Instagram, os carrosséis têm uma vantagem única confirmada pelo próprio CEO da plataforma, Adam Mosseri:</p>
+
+      <div class="algo-card" style="margin-top:1.25rem;">
+        <div class="algo-card-title">Como funciona — confirmado pelo Instagram</div>
+        <p>"Se alguém vê o teu carrossel mas não desliza, damos frequentemente a esse carrossel uma segunda oportunidade — mostramo-lo novamente, começando pelo segundo slide."<br><br>— Adam Mosseri, CEO do Instagram, Threads, setembro 2025</p>
+      </div>
+
+      <p style="margin-top:1.25rem; font-size:0.9rem;">Nenhum outro formato tem este comportamento. Uma imagem estática ou um Reel que não gera interação desaparece do feed. O carrossel tem <strong>duas oportunidades de captar atenção</strong> — dois momentos para gerar um like, um comentário, uma partilha.</p>
+    </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label">Meta's internal tests: carrosséis têm 1.4× mais alcance que imagens simples</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: FUNIL — REELS VS CARROSSEL -->
+  <div class="slide" data-slide="6">
+    <div class="accent-bar"></div>
+    <div class="slide-num">05 — Estratégia de funil</div>
+    <div>
+      <h2>Reels para chegar.<br>Carrossel para <em>fidelizar</em>.</h2>
+      <p>Os dois formatos têm funções diferentes. A estratégia mais eficaz usa os dois em conjunto.</p>
+
+      <div class="funnel-wrap" style="margin-top:1.5rem;">
+        <div class="funnel-stage">
+          <div class="funnel-bar top"></div>
+          <div class="funnel-label">Topo do funil</div>
+          <div class="funnel-format">Reels</div>
+          <div class="funnel-desc">Ótimos para <strong>alcance e descoberta</strong>. Chegam a pessoas que ainda não te seguem. Mais virais, mas menos profundos.</div>
+        </div>
+        <div class="funnel-divider"></div>
+        <div class="funnel-stage">
+          <div class="funnel-bar mid"></div>
+          <div class="funnel-label">Meio do funil</div>
+          <div class="funnel-format">Carrosséis</div>
+          <div class="funnel-desc">Ideais para <strong>aprofundar a relação</strong> com quem já te segue. Mais tempo de leitura, mais valor, mais memorável.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(15,15,15,0.05); padding:1rem 1.25rem; margin-top:1.25rem; border-left:3px solid var(--accent2);">
+        <p style="font-size:0.85rem; max-width:none;"><strong>Em termos simples:</strong> os Reels trazem pessoas novas à porta. O carrossel é o que as convence a ficar — e a confiar em ti.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: COMPARATIVO DE DADOS -->
+  <div class="slide" data-slide="7">
+    <div class="accent-bar"></div>
+    <div class="slide-num">06 — Carrossel vs. outros formatos</div>
+    <div>
+      <h2>O formato que<br><em>lidera</em> em todas<br>as plataformas</h2>
+
+      <p style="margin-bottom:0.5rem;">Taxa de envolvimento por formato (mediana, dados de 2025/2026):</p>
+
+      <div class="engage-bars">
+        <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.25rem;">LinkedIn</div>
+        <div class="engage-row">
+          <div class="engage-label">Carrossel</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:100%; background:var(--accent2);"></div></div>
+          <div class="engage-val" style="color:var(--accent2);">21,8%</div>
+        </div>
+        <div class="engage-row">
+          <div class="engage-label">Vídeo</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:34%; background:rgba(15,15,15,0.15);"></div></div>
+          <div class="engage-val" style="color:rgba(15,15,15,0.5);">7,3%</div>
+        </div>
+        <div class="engage-row">
+          <div class="engage-label">Imagem</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:30%; background:rgba(15,15,15,0.1);"></div></div>
+          <div class="engage-val" style="color:rgba(15,15,15,0.4);">6,5%</div>
+        </div>
+
+        <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-top:0.75rem; margin-bottom:0.25rem;">Instagram</div>
+        <div class="engage-row">
+          <div class="engage-label">Carrossel</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:100%; background:var(--accent);"></div></div>
+          <div class="engage-val" style="color:var(--accent);">6,9%</div>
+        </div>
+        <div class="engage-row">
+          <div class="engage-label">Imagem</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:64%; background:rgba(15,15,15,0.15);"></div></div>
+          <div class="engage-val" style="color:rgba(15,15,15,0.5);">4,4%</div>
+        </div>
+        <div class="engage-row">
+          <div class="engage-label">Reels</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:48%; background:rgba(15,15,15,0.1);"></div></div>
+          <div class="engage-val" style="color:rgba(15,15,15,0.4);">3,3%</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label">Fonte: Buffer, análise de 52M+ posts, 2026</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: ESPECIFICAÇÕES -->
+  <div class="slide" data-slide="8">
+    <div class="accent-bar"></div>
+    <div class="slide-num">07 — Especificações técnicas</div>
+    <div>
+      <h2>Dimensões e<br><em>limites</em> por plataforma</h2>
+
+      <div class="specs-wrap">
+        <div class="spec-row header">
+          <div class="spec-cell"></div>
+          <div class="spec-cell">📷 Instagram</div>
+          <div class="spec-cell">💼 LinkedIn</div>
+          <div class="spec-cell">🎵 TikTok</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-cell">Formato ideal</div>
+          <div class="spec-cell"><span class="spec-highlight">1080 × 1350 px</span><br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">retrato 4:5</span></div>
+          <div class="spec-cell"><span class="spec-highlight">1080 × 1080 px</span><br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">quadrado 1:1</span></div>
+          <div class="spec-cell"><span class="spec-highlight">1080 × 1920 px</span><br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">vertical 9:16</span></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-cell">N.º de slides</div>
+          <div class="spec-cell">Até <strong>20</strong> slides<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">ideal: 6–13</span></div>
+          <div class="spec-cell">Até <strong>300</strong> páginas<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">ideal: 6–12</span></div>
+          <div class="spec-cell"><strong>4 a 35</strong> imagens<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">ideal: 6–10</span></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-cell">Ficheiro</div>
+          <div class="spec-cell">JPG / PNG<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">máx. 8 MB/slide</span></div>
+          <div class="spec-cell"><span class="spec-highlight">PDF</span> / PPT / DOC<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">máx. 100 MB total</span></div>
+          <div class="spec-cell">JPG / PNG<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">máx. 500 MB total</span></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-cell">Nota</div>
+          <div class="spec-cell" style="font-size:0.78rem; color:rgba(15,15,15,0.6);">O primeiro slide define o ratio de todos os outros</div>
+          <div class="spec-cell" style="font-size:0.78rem; color:rgba(15,15,15,0.6);">Cada página do PDF = 1 slide</div>
+          <div class="spec-cell" style="font-size:0.78rem; color:rgba(15,15,15,0.6);">Pode adicionar música de fundo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: COMO PUBLICAR -->
+  <div class="slide" data-slide="9">
+    <div class="accent-bar"></div>
+    <div class="slide-num">08 — Como publicar</div>
+    <div>
+      <h2>Passo a passo<br>em cada <em>plataforma</em></h2>
+
+      <div class="platform-section">
+        <div class="platform-block">
+          <div class="platform-block-head">
+            <div class="platform-icon pi-ig">📷</div>
+            <div class="platform-name">Instagram</div>
+          </div>
+          <div class="steps-inline">
+            <div class="step-item"><span class="step-num">1</span> Abrir a app</div>
+            <div class="step-item"><span class="step-num">2</span> Tocar em "+"</div>
+            <div class="step-item"><span class="step-num">3</span> Selecionar o ícone de múltiplas imagens</div>
+            <div class="step-item"><span class="step-num">4</span> Escolher até 20 imagens</div>
+            <div class="step-item"><span class="step-num">5</span> Editar cada slide individualmente</div>
+            <div class="step-item"><span class="step-num">6</span> Adicionar legenda e publicar</div>
+          </div>
+        </div>
+        <div class="platform-block">
+          <div class="platform-block-head">
+            <div class="platform-icon pi-li">💼</div>
+            <div class="platform-name">LinkedIn</div>
+          </div>
+          <div class="steps-inline">
+            <div class="step-item"><span class="step-num">1</span> Clicar em "Iniciar publicação"</div>
+            <div class="step-item"><span class="step-num">2</span> Clicar no ícone de documento (folha/clip)</div>
+            <div class="step-item"><span class="step-num">3</span> Carregar o ficheiro PDF</div>
+            <div class="step-item"><span class="step-num">4</span> Adicionar um título ao documento</div>
+            <div class="step-item"><span class="step-num">5</span> Escrever a legenda e publicar</div>
+          </div>
+        </div>
+        <div class="platform-block">
+          <div class="platform-block-head">
+            <div class="platform-icon pi-tt">🎵</div>
+            <div class="platform-name">TikTok</div>
+          </div>
+          <div class="steps-inline">
+            <div class="step-item"><span class="step-num">1</span> Tocar em "+" para criar</div>
+            <div class="step-item"><span class="step-num">2</span> Selecionar "Carregar"</div>
+            <div class="step-item"><span class="step-num">3</span> Escolher múltiplas imagens (ativa o modo carrossel)</div>
+            <div class="step-item"><span class="step-num">4</span> Adicionar música de fundo (opcional)</div>
+            <div class="step-item"><span class="step-num">5</span> Adicionar legenda e publicar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: BOAS PRÁTICAS -->
+  <div class="slide" data-slide="10">
+    <div class="accent-bar"></div>
+    <div class="slide-num">09 — Boas práticas</div>
+    <div>
+      <h2>O que torna um<br>carrossel <em>eficaz</em></h2>
+
+      <div class="tips-grid">
+        <div class="tip-box">
+          <div class="tip-num">01</div>
+          <div class="tip-title">Primeiro slide = capa</div>
+          <div class="tip-text">É a única coisa que a maioria das pessoas vê antes de decidir deslizar. Deve criar curiosidade, não dar tudo de imediato. Funciona como o título de um artigo.</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-num">02</div>
+          <div class="tip-title">Segundo slide igualmente forte</div>
+          <div class="tip-text">No Instagram, o algoritmo pode mostrar o carrossel novamente começando pelo slide 2. Esse slide tem de ser suficientemente bom para despertar interesse por si só.</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-num">03</div>
+          <div class="tip-title">Uma ideia por slide</div>
+          <div class="tip-text">Cada slide deve ter uma mensagem clara e simples. Demasiado texto ou informação num slide faz o utilizador desistir de deslizar. Menos é mais.</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-num">04</div>
+          <div class="tip-title">Último slide com ação</div>
+          <div class="tip-text">O slide final deve pedir algo: seguir a conta, comentar, guardar, ou visitar um link. Quem chegou ao fim está altamente envolvido — não percas essa oportunidade.</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-num">05</div>
+          <div class="tip-title">6 a 13 slides é o ideal</div>
+          <div class="tip-text">Dados de 2025 mostram que carrosséis com 6 a 13 slides têm as melhores taxas de conclusão. Menos de 4 parece incompleto; mais de 15 perde audiência pelo caminho.</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-num">06</div>
+          <div class="tip-title">Conteúdo para guardar</div>
+          <div class="tip-text">Carrosséis educativos, checklists, guias e resumos geram muitas vezes mais guardados do que outros formatos. Um "guardar" é o sinal mais forte que podes dar ao algoritmo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: RESUMO FINAL -->
+  <div class="slide slide-final" data-slide="11">
+    <div class="slide-num" style="color:rgba(245,242,235,0.4);">Resumo</div>
+    <div>
+      <h2>O carrossel é o formato<br>mais inteligente<br>para construir audiência</h2>
+      <p>Não é uma moda — é o formato que os algoritmos recompensam, que o público retém, e que melhor representa o teu conhecimento em profundidade.</p>
+
+      <div class="final-summary">
+        <div class="final-item">
+          <div class="final-item-icon">🔄</div>
+          <div class="final-item-text"><strong style="color:white;">Aparece 2×</strong><br>no feed do Instagram</div>
+        </div>
+        <div class="final-item">
+          <div class="final-item-icon">📊</div>
+          <div class="final-item-text"><strong style="color:white;">21,8%</strong><br>envolvimento no LinkedIn</div>
+        </div>
+        <div class="final-item">
+          <div class="final-item-icon">🎯</div>
+          <div class="final-item-text"><strong style="color:white;">Meio do funil</strong><br>fideliza quem já te segue</div>
+        </div>
+        <div class="final-item">
+          <div class="final-item-icon">📄</div>
+          <div class="final-item-text"><strong style="color:white;">6–13 slides</strong><br>é o número ideal</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label" style="color:rgba(245,242,235,0.5);">Dados: Buffer, Social Insider, Social Media Today — 2025/2026</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="controls">
+  <button class="btn-nav" id="btnPrev" onclick="changeSlide(-1)">← Anterior</button>
+  <button class="btn-nav primary" id="btnNext" onclick="changeSlide(1)">Seguinte →</button>
+</div>
+
+<script>
+  let current = 1;
+  const total = document.querySelectorAll('.slide').length;
+  const dotContainer = document.getElementById('dotContainer');
+
+  for (let i = 1; i <= total; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + i);
+    dot.onclick = () => goTo(i);
+    dotContainer.appendChild(dot);
+  }
+
+  function goTo(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === n - 1);
+    });
+    document.querySelector('[data-slide="' + n + '"]').classList.add('visible');
+    current = n;
+    document.getElementById('btnPrev').style.opacity = n === 1 ? '0.3' : '1';
+    document.getElementById('btnNext').textContent = n === total ? '✓ Fim' : 'Seguinte →';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function changeSlide(dir) {
+    const next = Math.max(1, Math.min(total, current + dir));
+    if (next !== current) goTo(next);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+
+  goTo(1);
+</script>
+</body>
+</html>
