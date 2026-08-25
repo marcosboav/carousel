@@ -126,10 +126,10 @@
     color: var(--accent);
   }
   .slide-cover .cover-sub {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 300;
     color: rgba(245,242,235,0.55);
-    max-width: 420px;
+    max-width: 400px;
     line-height: 1.6;
   }
   .slide-cover .cover-sub strong {
@@ -168,25 +168,30 @@
   /* slides — general titles */
   .slide h2 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   .slide h2 em {
     font-style: normal;
     color: var(--accent);
   }
   .slide p {
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 1.05rem;
+    line-height: 1.6;
     color: rgba(15,15,15,0.75);
-    max-width: 620px;
+    max-width: 560px;
   }
   .slide p strong {
     color: var(--black);
     font-weight: 500;
+  }
+  .lede {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: rgba(15,15,15,0.85);
   }
 
   /* stat block */
@@ -195,7 +200,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: rgba(15,15,15,0.08);
-    margin-top: 2rem;
+    margin-top: 1.75rem;
   }
   .stat-box {
     background: var(--cream);
@@ -208,6 +213,7 @@
     line-height: 1;
     color: var(--accent);
     letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
   }
   .stat-label {
     font-size: 0.78rem;
@@ -221,6 +227,49 @@
     margin-top: 0.5rem;
     font-style: italic;
   }
+
+  /* comparison table (Niu Lai vs. Hollywood) */
+  .cmp-wrap {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: rgba(15,15,15,0.08);
+  }
+  .cmp-row {
+    display: grid;
+    grid-template-columns: 1.3fr 0.85fr 0.85fr 1.15fr;
+    background: var(--cream);
+  }
+  .cmp-row.header {
+    background: var(--black);
+  }
+  .cmp-row.highlight {
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  .cmp-cell {
+    padding: 0.8rem 0.9rem;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    border-right: 1px solid rgba(15,15,15,0.06);
+    font-variant-numeric: tabular-nums;
+  }
+  .cmp-row.header .cmp-cell {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,242,235,0.5);
+    border-right-color: rgba(245,242,235,0.1);
+  }
+  .cmp-cell:first-child {
+    font-weight: 600;
+    color: rgba(15,15,15,0.85);
+  }
+  .cmp-row.highlight .cmp-cell:first-child { color: var(--accent); }
+  .cmp-row.highlight .cmp-cell:last-child { color: var(--accent); font-weight: 600; }
+  .cmp-cell:last-child { color: rgba(15,15,15,0.55); border-right: none; }
 
   /* platform badges */
   .platform-row {
@@ -239,63 +288,13 @@
     font-weight: 500;
     letter-spacing: 0.02em;
   }
-  .pb-ig { background: #f9e7ff; color: #7b1fa2; }
-  .pb-li { background: #e3f0ff; color: #0a52a4; }
-  .pb-tt { background: #ffe8f0; color: #b01c4e; }
-  .pb-rd { background: #ffe4d6; color: #cc4400; }
-  .pb-x  { background: #e8e8e8; color: #111111; }
-  .pb-wb { background: #ffe0e0; color: #c0152f; }
-
-  /* funnel diagram */
-  .funnel-wrap {
-    display: flex;
-    gap: 0;
-    margin-top: 2rem;
-  }
-  .funnel-stage {
-    flex: 1;
-    position: relative;
-  }
-  .funnel-bar {
-    height: 8px;
-    margin-bottom: 1rem;
-  }
-  .funnel-bar.top { background: var(--accent); }
-  .funnel-bar.mid { background: var(--accent2); }
-  .funnel-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(15,15,15,0.4);
-    margin-bottom: 0.5rem;
-  }
-  .funnel-format {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-  }
-  .funnel-desc {
-    font-size: 0.82rem;
-    line-height: 1.5;
-    color: rgba(15,15,15,0.6);
-  }
-  .funnel-divider {
-    width: 1px;
-    background: rgba(15,15,15,0.1);
-    align-self: stretch;
-    margin: 0 2rem;
-  }
 
   /* algo / quote card */
   .algo-card {
     background: var(--black);
     color: var(--white);
-    border-radius: 0;
-    padding: 1.5rem 2rem;
-    margin-top: 1.5rem;
+    padding: 1.35rem 1.75rem;
+    margin-top: 1.25rem;
     position: relative;
     overflow: hidden;
   }
@@ -313,18 +312,18 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: rgba(245,242,235,0.4);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   .algo-card p {
-    color: rgba(245,242,235,0.85);
-    font-size: 0.95rem;
-    line-height: 1.65;
+    color: rgba(245,242,235,0.9);
+    font-size: 0.98rem;
+    line-height: 1.55;
     max-width: none;
   }
 
-  /* how-to / platform sentiment blocks */
+  /* platform sentiment blocks */
   .platform-section {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 1px;
@@ -332,39 +331,36 @@
   }
   .platform-block {
     background: var(--cream);
-    padding: 1.1rem 1.5rem;
-  }
-  .platform-block-head {
+    padding: 0.9rem 1.5rem;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    gap: 1rem;
   }
   .platform-icon {
-    width: 28px; height: 28px;
-    border-radius: 6px;
+    width: 30px; height: 30px;
+    border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
+    font-size: 15px;
     flex-shrink: 0;
   }
   .pi-ig { background: #f9e7ff; }
-  .pi-li { background: #e3f0ff; }
-  .pi-tt { background: #ffe8f0; }
   .pi-rd { background: #ffe4d6; }
   .pi-x  { background: #e8e8e8; }
   .pi-wb { background: #ffe0e0; }
   .platform-name {
     font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(15,15,15,0.5);
+    color: rgba(15,15,15,0.45);
+    width: 108px;
+    flex-shrink: 0;
   }
   .platform-block p {
     font-size: 0.85rem;
-    line-height: 1.55;
-    color: rgba(15,15,15,0.65);
+    line-height: 1.45;
+    color: rgba(15,15,15,0.68);
     max-width: none;
   }
 
@@ -372,8 +368,8 @@
   .engage-bars {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+    gap: 0.7rem;
+    margin-top: 1.25rem;
   }
   .engage-row {
     display: flex;
@@ -381,8 +377,8 @@
     gap: 1rem;
   }
   .engage-label {
-    width: 110px;
-    font-size: 0.78rem;
+    width: 100px;
+    font-size: 0.76rem;
     color: rgba(15,15,15,0.55);
     flex-shrink: 0;
     text-align: right;
@@ -398,12 +394,13 @@
     transition: width 0.6s ease;
   }
   .engage-val {
-    width: 105px;
+    width: 90px;
     font-family: 'Syne', sans-serif;
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--black);
     flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
   }
 
   /* tips grid */
@@ -412,30 +409,30 @@
     grid-template-columns: 1fr 1fr;
     gap: 2px;
     background: rgba(15,15,15,0.06);
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
   }
   .tip-box {
     background: var(--cream);
-    padding: 1.25rem 1.5rem;
+    padding: 1.1rem 1.4rem;
   }
   .tip-num {
     font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    color: rgba(15,15,15,0.08);
+    color: rgba(15,15,15,0.1);
     line-height: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   .tip-title {
     font-family: 'Syne', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
     color: var(--black);
   }
   .tip-text {
     font-size: 0.8rem;
-    line-height: 1.55;
+    line-height: 1.45;
     color: rgba(15,15,15,0.6);
   }
 
@@ -447,25 +444,25 @@
   .slide-final h2 {
     color: var(--white);
   }
-  .slide-final p { color: rgba(245,242,235,0.85); max-width: 520px; }
+  .slide-final p { color: rgba(245,242,235,0.85); max-width: 480px; }
   .final-summary {
     display: flex;
     gap: 2px;
     background: rgba(245,242,235,0.15);
-    margin-top: 2rem;
+    margin-top: 1.75rem;
   }
   .final-item {
     flex: 1;
     background: rgba(0,0,0,0.15);
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.1rem;
   }
   .final-item-icon {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
   .final-item-text {
-    font-size: 0.78rem;
-    line-height: 1.5;
+    font-size: 0.76rem;
+    line-height: 1.45;
     color: rgba(245,242,235,0.85);
   }
 
@@ -475,10 +472,10 @@
     align-items: center;
     justify-content: space-between;
     margin-top: auto;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
   }
   .slide-footer-label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: rgba(15,15,15,0.25);
     font-style: italic;
   }
@@ -535,10 +532,12 @@
     .slide { padding: 2rem; min-height: auto; }
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .tips-grid { grid-template-columns: 1fr; }
-    .funnel-wrap { flex-direction: column; gap: 1.5rem; }
-    .funnel-divider { width: 100%; height: 1px; margin: 0; }
-    .engage-label { width: 80px; }
-    .engage-val { width: 90px; }
+    .engage-label { width: 74px; font-size: 0.7rem; }
+    .engage-val { width: 74px; font-size: 0.72rem; }
+    .cmp-row { grid-template-columns: 1fr 0.7fr 0.7fr; }
+    .cmp-cell:nth-child(4) { display: none; }
+    .platform-block { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .platform-name { width: auto; }
   }
 </style>
 </head>
@@ -556,7 +555,7 @@
     <div class="cover-tag">Marketing Case Study · China, Aug 2026</div>
     <div>
       <h1>Deliberately<br><em>Ugly.</em><br>Accidentally<br>Genius.</h1>
-      <p class="cover-sub">A $200, five-year, mostly-solo cartoon called <strong>Niu Lai</strong> flopped for 10 days, got mocked into a meme — then out-earned its own budget by 30,000×. Here's what it teaches about zagging when everyone else zigs.</p>
+      <p class="cover-sub">A $200 cartoon called <strong>Niu Lai</strong> flopped for 10 days — then made 30,000× its budget back. Here's the marketing lesson.</p>
     </div>
     <div class="cover-deco"></div>
     <div class="cover-deco2"></div>
@@ -568,24 +567,23 @@
     <div class="accent-bar"></div>
     <div class="slide-num">01 — The Film</div>
     <div>
-      <h2>One Guy, His Mom,<br>And <em>Five Years</em></h2>
-      <p><strong>Niu Lai</strong> (牛来, roughly "Here Comes the Cow") follows a timid calf who has to find the courage to cross the desert with his herd. It was written, directed and almost entirely hand-animated — frame by frame, on second-hand computers — by first-time filmmaker <strong>Xin Yumeng</strong>, with his mother <strong>Sun Lifang</strong> contributing the story, voice work and the end-credits score. No studio. No investors. No AI tools. Released in Chinese cinemas on August 5, 2026 — with zero marketing.</p>
+      <h2>One Guy, His Mom,<br>Five <em>Years</em></h2>
+      <p class="lede">Hand-drawn, frame by frame, on secondhand computers. No studio. No investors. No AI. Released Aug 5, 2026 — with zero marketing.</p>
 
       <div class="stat-grid">
         <div class="stat-box">
           <div class="stat-num">5</div>
-          <div class="stat-label">years to make it, almost entirely alone</div>
+          <div class="stat-label">years, almost entirely solo</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">$0</div>
-          <div class="stat-label">outside investment or ad spend</div>
+          <div class="stat-label">outside investment or ads</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">86</div>
-          <div class="stat-label">minute runtime, zero AI-generated frames</div>
+          <div class="stat-label">minutes, zero AI frames</div>
         </div>
       </div>
-      <div class="stat-source">Sources: Guancha, Sina Entertainment, SCMP director interviews</div>
     </div>
   </div>
 
@@ -595,23 +593,23 @@
     <div class="slide-num">02 — The Flop</div>
     <div>
       <h2>It Opened To<br>An <em>Empty</em> Room</h2>
-      <p>Niu Lai launched with no trailer, no press and no official poster — theater staff drew their own promotional art by hand just to put something on the wall. Some cinemas ran it once a day, to near-empty houses.</p>
+      <p class="lede">No trailer. No poster — theaters drew their own. Ten days of nearly empty houses.</p>
 
       <div class="stat-grid">
         <div class="stat-box">
           <div class="stat-num">¥3,420</div>
-          <div class="stat-label">total box office, opening day (≈$480)</div>
+          <div class="stat-label">opening-day box office</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">¥7,705</div>
-          <div class="stat-label">cumulative total after 10 days</div>
+          <div class="stat-label">total after 10 days</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">0</div>
-          <div class="stat-label">press releases, trailers or paid ads</div>
+          <div class="stat-label">ads, trailers, press</div>
         </div>
       </div>
-      <div class="stat-source">The lowest opening for a Chinese animated theatrical release in 2026. Sources: Caixin, Sina.</div>
+      <div class="stat-source">Lowest animated opening in China in 2026 · Caixin, Sina</div>
     </div>
   </div>
 
@@ -621,11 +619,11 @@
     <div class="slide-num">03 — The Zag</div>
     <div>
       <h2>Everyone Else Was<br>Chasing <em>Perfect</em></h2>
-      <p>2026 is the summer of AI-assisted animation — every studio racing to make each frame smoother and cleaner than the last. Niu Lai did the opposite: grass rendered as yellow blocks literally labelled "grass," snakes like bent springs, characters clipping through their own limbs. While the market zigged toward polish, one film — by accident, not by strategy — zagged toward the rawest thing on the release calendar.</p>
+      <p class="lede">2026: every studio racing toward AI-smooth animation. Niu Lai went the other way — grass literally labeled "grass."</p>
 
       <div class="algo-card">
-        <div class="algo-card-title">The bet nobody placed on purpose</div>
-        <p>Niu Lai wasn't a marketing strategy — it was a family with no budget finishing what they started. But it landed exactly on a market blind spot: an audience quietly exhausted by algorithmic polish, primed to reward the one thing a machine can't fake — visible, unmistakable human effort.</p>
+        <div class="algo-card-title">The bet nobody planned</div>
+        <p>Not a strategy — a family finishing what they started. It landed right on a blind spot: audiences tired of polish.</p>
       </div>
     </div>
   </div>
@@ -636,43 +634,87 @@
     <div class="slide-num">04 — The Turn</div>
     <div>
       <h2>Then The Internet<br>Found It</h2>
-      <p>Clips started circulating around August 14 — not as promotion, but as ridicule. Curiosity did the rest. "Watching it costs you 86 minutes of regret. Not watching it costs you a lifetime" became the film's unofficial tagline — quoted, unironically, by the people buying tickets.</p>
+      <p class="lede">Clips spread as ridicule on Aug 14. Curiosity did the rest.</p>
 
       <div class="engage-bars">
         <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.25rem;">Cumulative box office (RMB)</div>
         <div class="engage-row">
-          <div class="engage-label">Day 10 · Aug 14</div>
+          <div class="engage-label">Aug 14</div>
           <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:2%; background:rgba(15,15,15,0.15);"></div></div>
           <div class="engage-val" style="color:rgba(15,15,15,0.5);">¥7,705</div>
         </div>
         <div class="engage-row">
-          <div class="engage-label">Day 14 · Aug 19</div>
+          <div class="engage-label">Aug 19</div>
           <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:54%; background:var(--accent2);"></div></div>
           <div class="engage-val" style="color:var(--accent2);">¥24.4M</div>
         </div>
         <div class="engage-row">
-          <div class="engage-label">Day 19 · Aug 24</div>
+          <div class="engage-label">Aug 24</div>
           <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:100%; background:var(--accent);"></div></div>
           <div class="engage-val" style="color:var(--accent);">¥45.2M+</div>
         </div>
       </div>
     </div>
     <div class="slide-footer">
-      <span class="slide-footer-label">≈$6.3M USD by day 19 · nearly 6,000× growth in under two weeks · Maoyan, Caixin, SCMP</span>
+      <span class="slide-footer-label">≈$6.3M USD · nearly 6,000× growth in 10 days</span>
     </div>
   </div>
 
-  <!-- SLIDE 6: WHY IT WORKED -->
+  <!-- SLIDE 6: VS HOLLYWOOD -->
   <div class="slide" data-slide="6">
     <div class="accent-bar"></div>
-    <div class="slide-num">05 — Why It Worked</div>
+    <div class="slide-num">05 — Meanwhile, In Hollywood</div>
+    <div>
+      <h2>Same Year.<br>Very Different <em>Math</em>.</h2>
+      <p class="lede">2026's biggest budgets didn't guarantee profit. $200 beat all of them.</p>
+
+      <div class="cmp-wrap">
+        <div class="cmp-row header">
+          <div class="cmp-cell">Film</div>
+          <div class="cmp-cell">Budget</div>
+          <div class="cmp-cell">Box office</div>
+          <div class="cmp-cell">Result</div>
+        </div>
+        <div class="cmp-row highlight">
+          <div class="cmp-cell">Niu Lai</div>
+          <div class="cmp-cell">$200</div>
+          <div class="cmp-cell">$6.3M+</div>
+          <div class="cmp-cell">+30,000×</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell">Desert Warrior</div>
+          <div class="cmp-cell">$150M</div>
+          <div class="cmp-cell">$730K</div>
+          <div class="cmp-cell">-99.5%</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell">Supergirl</div>
+          <div class="cmp-cell">$170M</div>
+          <div class="cmp-cell">$126M</div>
+          <div class="cmp-cell">≈ -$100–120M</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell">Masters of the Universe</div>
+          <div class="cmp-cell">$200M+</div>
+          <div class="cmp-cell">$102M*</div>
+          <div class="cmp-cell">nowhere close</div>
+        </div>
+      </div>
+      <div class="stat-source">*3 weeks in, still short of its ~$300M all-in spend · Variety, Kotaku, SlashFilm, Looper</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: WHY IT WORKED -->
+  <div class="slide" data-slide="7">
+    <div class="accent-bar"></div>
+    <div class="slide-num">06 — Why It Worked</div>
     <div>
       <h2>Imperfection Became<br>The <em>Premium</em></h2>
-      <p>As AI-generated content floods every feed, audiences have started treating visible human flaws as a trust signal instead of a defect. Chinese commentators coined a phrase for it: <strong>活人感</strong> — "the feel of a living person."</p>
+      <p class="lede">AI floods every feed now. Visible human flaws read as trust, not defect. Chinese commentators call it 活人感 — "the feel of a living person."</p>
 
       <div class="algo-card">
         <div class="algo-card-title">The cultural read</div>
-        <p>"In an environment where audiences have learned to distrust polish, they'd rather have something visibly, imperfectly human than something slickly synthetic." Critics went further, comparing Niu Lai's cult trajectory to <em>The Room</em> and calling it "the Chinese Mulholland Drive" of so-bad-it's-good cinema — a midnight-movie phenomenon compressed into two weeks.</p>
+        <p>Critics compared its cult trajectory to <em>The Room</em> — calling it "the Chinese Mulholland Drive" of so-bad-it's-good cinema.</p>
       </div>
     </div>
     <div class="slide-footer">
@@ -680,120 +722,111 @@
     </div>
   </div>
 
-  <!-- SLIDE 7: SENTIMENT BY PLATFORM -->
-  <div class="slide" data-slide="7">
+  <!-- SLIDE 8: SENTIMENT BY PLATFORM -->
+  <div class="slide" data-slide="8">
     <div class="accent-bar"></div>
-    <div class="slide-num">06 — Sentiment, Platform By Platform</div>
+    <div class="slide-num">07 — Sentiment, Platform By Platform</div>
     <div>
       <h2>Same Movie,<br>Four Different <em>Reactions</em></h2>
 
       <div class="platform-section">
         <div class="platform-block">
-          <div class="platform-block-head">
-            <div class="platform-icon pi-wb">🔥</div>
-            <div class="platform-name">Weibo / Douyin</div>
-          </div>
-          <p>Where it started. Trending for two straight weeks. Viewers drove 30km just to "witness history," farmer and vet accounts fact-checked the cow's anatomy for laughs — alongside a backlash-to-the-backlash calling it "bad money driving out good money," pulling attention from better-made films.</p>
+          <div class="platform-icon pi-wb">🔥</div>
+          <div class="platform-name">Weibo / Douyin</div>
+          <p>Where it started. Two weeks trending — mostly real curiosity, plus debunked subsidy-fraud rumors.</p>
         </div>
         <div class="platform-block">
-          <div class="platform-block-head">
-            <div class="platform-icon pi-rd">👽</div>
-            <div class="platform-name">Reddit</div>
-          </div>
-          <p>Arrived around Aug 18. A r/Damnthatsinteresting post about the hand-drawn theater posters pulled 14,000+ upvotes and 220+ comments in a day. Tone: bemused fascination, instant comparisons to <em>The Room</em> and <em>Birdemic</em>, very little cynicism.</p>
+          <div class="platform-icon pi-rd">👽</div>
+          <div class="platform-name">Reddit</div>
+          <p>14,000+ upvotes on one post about the hand-drawn posters. Bemused, not cynical.</p>
         </div>
         <div class="platform-block">
-          <div class="platform-block-head">
-            <div class="platform-icon pi-x">✕</div>
-            <div class="platform-name">X (Twitter)</div>
-          </div>
-          <p>Pure meme format. One joke about seeing Niu Lai "in 70mm IMAX" passed 1,800 likes in a day. Mostly reposted clips and edits — the engagement <em>is</em> the review.</p>
+          <div class="platform-icon pi-x">✕</div>
+          <div class="platform-name">X (Twitter)</div>
+          <p>Pure meme fuel — a "70mm IMAX" joke hit 1,800 likes overnight.</p>
         </div>
         <div class="platform-block">
-          <div class="platform-block-head">
-            <div class="platform-icon pi-ig">📷</div>
-            <div class="platform-name">Instagram</div>
-          </div>
-          <p>Reels and clip accounts drive the reach here — short loops of the clipping animation and the hand-drawn posters, minimal captioning. Lower discourse, higher raw shareability: it's a visual here, not a debate.</p>
+          <div class="platform-icon pi-ig">📷</div>
+          <div class="platform-name">Instagram</div>
+          <p>Clips and reels do the talking. No debate — just the visual.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: THE SKEPTICS -->
-  <div class="slide" data-slide="8">
+  <!-- SLIDE 9: THE SKEPTICS -->
+  <div class="slide" data-slide="9">
     <div class="accent-bar"></div>
-    <div class="slide-num">07 — Not Everyone's Laughing</div>
+    <div class="slide-num">08 — Not Everyone's Laughing</div>
     <div>
       <h2>The Backlash To<br>The <em>Backlash</em></h2>
-      <p>Virality this fast invites suspicion. Online theories accused the film of laundering local arts subsidies or buying "water army" bot engagement. Analysts who reviewed the production's scale called that unlikely — more consistent with a tiny, self-funded team than a coordinated scheme. One review of hashtag activity found roughly <strong>92% came from real, first-time viewers.</strong></p>
-      <p style="margin-top:1rem;">There's also a quieter, more sincere thread: once the mother-son backstory spread, a lot of the mockery softened into something closer to affection — with theater managers admitting they were torn, as one put it, between "morality and the punchline."</p>
+      <p class="lede">Some cried subsidy fraud or bots. Analysts found ~92% of engagement was real. The mockery softened once the backstory spread.</p>
     </div>
     <div class="slide-footer">
-      <span class="slide-footer-label">Sources: Sohu, The Paper, industry commentary</span>
+      <span class="slide-footer-label">Sources: Sohu, The Paper</span>
     </div>
   </div>
 
-  <!-- SLIDE 9: THE MARKETING LESSON -->
-  <div class="slide" data-slide="9">
+  <!-- SLIDE 10: THE MARKETING LESSON -->
+  <div class="slide" data-slide="10">
     <div class="accent-bar"></div>
-    <div class="slide-num">08 — The Marketing Lesson</div>
+    <div class="slide-num">09 — The Marketing Lesson</div>
     <div>
       <h2>What To Steal<br>For Your Own <em>Feed</em></h2>
 
       <div class="tips-grid">
         <div class="tip-box">
           <div class="tip-num">01</div>
-          <div class="tip-title">Polish is the default now</div>
-          <div class="tip-text">When every competitor's content is AI-smooth, smooth stops being a differentiator. It becomes wallpaper.</div>
+          <div class="tip-title">Polish is the default</div>
+          <div class="tip-text">Smooth is wallpaper now — everyone already has it.</div>
         </div>
         <div class="tip-box">
           <div class="tip-num">02</div>
           <div class="tip-title">Constraints can't be faked</div>
-          <div class="tip-text">Audiences can tell manufactured "authenticity" from the real thing. Niu Lai's flaws were flaws, not a filter — that's exactly why they worked.</div>
+          <div class="tip-text">Audiences spot manufactured "authenticity" fast.</div>
         </div>
         <div class="tip-box">
           <div class="tip-num">03</div>
-          <div class="tip-title">Let the audience write the joke</div>
-          <div class="tip-text">The film never explained itself. The internet supplied the captions, the comparisons, the memes. Give people something to finish, not something already finished.</div>
+          <div class="tip-title">Let the audience finish the joke</div>
+          <div class="tip-text">The internet wrote the captions — not the studio.</div>
         </div>
         <div class="tip-box">
           <div class="tip-num">04</div>
           <div class="tip-title">The origin story is the product</div>
-          <div class="tip-text">Nobody was talking about the plot. They were talking about a mother and son on secondhand computers for five years. That story out-marketed any campaign budget.</div>
+          <div class="tip-text">Nobody discussed the plot. Everyone discussed the five years.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 10: FINAL / RECAP -->
-  <div class="slide slide-final" data-slide="10">
+  <!-- SLIDE 11: FINAL / RECAP -->
+  <div class="slide slide-final" data-slide="11">
     <div class="slide-num" style="color:rgba(245,242,235,0.4);">Recap</div>
     <div>
       <h2>When The Market<br>Zigs Toward <em>Polish</em>,<br>Someone Always Zags</h2>
-      <p>Niu Lai never planned to be a case study. But it's a live reminder: in a feed full of synthetic perfection, the most disruptive thing you can post might be something honestly, visibly made by hand.</p>
+      <p>The most disruptive post in your feed might just be something honestly, visibly made by hand.</p>
 
       <div class="final-summary">
         <div class="final-item">
           <div class="final-item-icon">🐮</div>
-          <div class="final-item-text"><strong style="color:white;">5 years</strong><br>made almost entirely by one person</div>
-        </div>
-        <div class="final-item">
-          <div class="final-item-icon">📉</div>
-          <div class="final-item-text"><strong style="color:white;">¥7,705</strong><br>total box office, first 10 days</div>
+          <div class="final-item-text"><strong style="color:white;">5 years</strong><br>made almost entirely alone</div>
         </div>
         <div class="final-item">
           <div class="final-item-icon">📈</div>
-          <div class="final-item-text"><strong style="color:white;">¥45M+</strong><br>box office by day 19 — still climbing</div>
+          <div class="final-item-text"><strong style="color:white;">¥45M+</strong><br>box office, still climbing</div>
         </div>
         <div class="final-item">
           <div class="final-item-icon">🔁</div>
-          <div class="final-item-text"><strong style="color:white;">~6,000×</strong><br>growth, driven entirely by word of mouth</div>
+          <div class="final-item-text"><strong style="color:white;">~6,000×</strong><br>growth from word of mouth</div>
+        </div>
+        <div class="final-item">
+          <div class="final-item-icon">🎬</div>
+          <div class="final-item-text"><strong style="color:white;">$200 → $6.3M</strong><br>beat a $150M Hollywood flop</div>
         </div>
       </div>
     </div>
     <div class="slide-footer">
-      <span class="slide-footer-label" style="color:rgba(245,242,235,0.5);">Sources: SCMP, Caixin, Guancha, Sina, Kotaku, Sohu — Aug 2026. Save this for your next campaign brief.</span>
+      <span class="slide-footer-label" style="color:rgba(245,242,235,0.5);">Sources: SCMP, Caixin, Guancha, Sina, Kotaku, Sohu, Variety, SlashFilm — Aug 2026.</span>
     </div>
   </div>
 
