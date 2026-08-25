@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Posts em Carrossel — Guia Prático</title>
+<title>Niu Lai — When The Market Zigs, Zag</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -99,7 +99,7 @@
     margin-bottom: 2.5rem;
   }
 
-  /* slide 1 — capa */
+  /* slide 1 — cover */
   .slide-cover {
     background: var(--black);
     color: var(--white);
@@ -129,8 +129,12 @@
     font-size: 1rem;
     font-weight: 300;
     color: rgba(245,242,235,0.55);
-    max-width: 380px;
+    max-width: 420px;
     line-height: 1.6;
+  }
+  .slide-cover .cover-sub strong {
+    color: var(--accent);
+    font-weight: 500;
   }
   .cover-deco {
     position: absolute;
@@ -161,7 +165,7 @@
     opacity: 0.9;
   }
 
-  /* slides — títulos gerais */
+  /* slides — general titles */
   .slide h2 {
     font-family: 'Syne', sans-serif;
     font-size: clamp(1.8rem, 4vw, 2.6rem);
@@ -178,7 +182,7 @@
     font-size: 1rem;
     line-height: 1.7;
     color: rgba(15,15,15,0.75);
-    max-width: 600px;
+    max-width: 620px;
   }
   .slide p strong {
     color: var(--black);
@@ -238,6 +242,9 @@
   .pb-ig { background: #f9e7ff; color: #7b1fa2; }
   .pb-li { background: #e3f0ff; color: #0a52a4; }
   .pb-tt { background: #ffe8f0; color: #b01c4e; }
+  .pb-rd { background: #ffe4d6; color: #cc4400; }
+  .pb-x  { background: #e8e8e8; color: #111111; }
+  .pb-wb { background: #ffe0e0; color: #c0152f; }
 
   /* funnel diagram */
   .funnel-wrap {
@@ -282,7 +289,7 @@
     margin: 0 2rem;
   }
 
-  /* algo card */
+  /* algo / quote card */
   .algo-card {
     background: var(--black);
     color: var(--white);
@@ -315,50 +322,7 @@
     max-width: none;
   }
 
-  /* specs table */
-  .specs-wrap {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    background: rgba(15,15,15,0.06);
-  }
-  .spec-row {
-    display: grid;
-    grid-template-columns: 140px 1fr 1fr 1fr;
-    background: var(--cream);
-    gap: 0;
-  }
-  .spec-row.header {
-    background: var(--black);
-    color: var(--white);
-  }
-  .spec-cell {
-    padding: 0.85rem 1rem;
-    font-size: 0.82rem;
-    border-right: 1px solid rgba(15,15,15,0.06);
-    line-height: 1.4;
-  }
-  .spec-row.header .spec-cell {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(245,242,235,0.5);
-    border-right-color: rgba(245,242,235,0.08);
-  }
-  .spec-cell:first-child {
-    font-weight: 500;
-    color: rgba(15,15,15,0.55);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .spec-row.header .spec-cell:first-child { color: rgba(245,242,235,0.4); }
-  .spec-highlight { color: var(--accent); font-weight: 500; }
-
-  /* how-to steps */
+  /* how-to / platform sentiment blocks */
   .platform-section {
     margin-top: 1.5rem;
     display: flex;
@@ -368,13 +332,13 @@
   }
   .platform-block {
     background: var(--cream);
-    padding: 1.25rem 1.5rem;
+    padding: 1.1rem 1.5rem;
   }
   .platform-block-head {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
   .platform-icon {
     width: 28px; height: 28px;
@@ -386,6 +350,9 @@
   .pi-ig { background: #f9e7ff; }
   .pi-li { background: #e3f0ff; }
   .pi-tt { background: #ffe8f0; }
+  .pi-rd { background: #ffe4d6; }
+  .pi-x  { background: #e8e8e8; }
+  .pi-wb { background: #ffe0e0; }
   .platform-name {
     font-family: 'Syne', sans-serif;
     font-size: 0.75rem;
@@ -394,33 +361,14 @@
     text-transform: uppercase;
     color: rgba(15,15,15,0.5);
   }
-  .steps-inline {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0;
-    align-items: center;
-  }
-  .step-item {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.82rem;
-    color: rgba(15,15,15,0.7);
-  }
-  .step-item + .step-item::before {
-    content: '→';
-    color: rgba(15,15,15,0.25);
-    font-size: 0.75rem;
-    margin-right: 0.1rem;
-  }
-  .step-num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.65rem;
-    color: rgba(15,15,15,0.3);
+  .platform-block p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(15,15,15,0.65);
+    max-width: none;
   }
 
-  /* engagement visual */
+  /* engagement / box office bars */
   .engage-bars {
     display: flex;
     flex-direction: column;
@@ -433,7 +381,7 @@
     gap: 1rem;
   }
   .engage-label {
-    width: 90px;
+    width: 110px;
     font-size: 0.78rem;
     color: rgba(15,15,15,0.55);
     flex-shrink: 0;
@@ -450,7 +398,7 @@
     transition: width 0.6s ease;
   }
   .engage-val {
-    width: 55px;
+    width: 105px;
     font-family: 'Syne', sans-serif;
     font-size: 0.8rem;
     font-weight: 700;
@@ -499,7 +447,7 @@
   .slide-final h2 {
     color: var(--white);
   }
-  .slide-final p { color: rgba(245,242,235,0.8); max-width: 500px; }
+  .slide-final p { color: rgba(245,242,235,0.85); max-width: 520px; }
   .final-summary {
     display: flex;
     gap: 2px;
@@ -518,7 +466,7 @@
   .final-item-text {
     font-size: 0.78rem;
     line-height: 1.5;
-    color: rgba(245,242,235,0.8);
+    color: rgba(245,242,235,0.85);
   }
 
   /* bottom bar */
@@ -574,7 +522,7 @@
     color: var(--white);
   }
 
-  .slide-final .slide-footer-label { color: rgba(245,242,235,0.4); }
+  .slide-final .slide-footer-label { color: rgba(245,242,235,0.5); }
 
   .accent-bar {
     position: absolute;
@@ -586,385 +534,274 @@
   @media (max-width: 640px) {
     .slide { padding: 2rem; min-height: auto; }
     .stat-grid { grid-template-columns: 1fr 1fr; }
-    .spec-row { grid-template-columns: 80px 1fr 1fr; }
-    .spec-row .spec-cell:nth-child(4) { display: none; }
     .tips-grid { grid-template-columns: 1fr; }
     .funnel-wrap { flex-direction: column; gap: 1.5rem; }
     .funnel-divider { width: 100%; height: 1px; margin: 0; }
+    .engage-label { width: 80px; }
+    .engage-val { width: 90px; }
   }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <span class="nav-title">Posts em Carrossel</span>
+  <span class="nav-title">Niu Lai · Case Study</span>
   <div class="nav-dots" id="dotContainer"></div>
 </nav>
 
 <div class="deck" id="deck">
 
-  <!-- SLIDE 1: CAPA -->
+  <!-- SLIDE 1: COVER -->
   <div class="slide slide-cover visible" data-slide="1">
-    <div class="cover-tag">Guia de Conteúdo Digital · 2025–2026</div>
+    <div class="cover-tag">Marketing Case Study · China, Aug 2026</div>
     <div>
-      <h1>Posts em<br><em>Carrossel</em><br>— o que são<br>e porquê importam</h1>
-      <p class="cover-sub">O formato que gera mais envolvimento nas redes sociais, explicado de forma simples.</p>
+      <h1>Deliberately<br><em>Ugly.</em><br>Accidentally<br>Genius.</h1>
+      <p class="cover-sub">A $200, five-year, mostly-solo cartoon called <strong>Niu Lai</strong> flopped for 10 days, got mocked into a meme — then out-earned its own budget by 30,000×. Here's what it teaches about zagging when everyone else zigs.</p>
     </div>
     <div class="cover-deco"></div>
     <div class="cover-deco2"></div>
     <div class="cover-deco3"></div>
   </div>
 
-  <!-- SLIDE 2: O QUE É -->
+  <!-- SLIDE 2: THE FILM -->
   <div class="slide" data-slide="2">
     <div class="accent-bar"></div>
-    <div class="slide-num">01 — O que é um carrossel</div>
+    <div class="slide-num">01 — The Film</div>
     <div>
-      <h2>Uma publicação,<br>várias <em>páginas</em></h2>
-      <p>Um post em carrossel é uma publicação com múltiplos slides — como um mini-livro ou uma apresentação que o utilizador pode deslizar com o dedo. Cada slide é uma página nova, com a sua própria imagem ou texto.</p>
-
-      <div class="platform-row" style="margin-top:1.5rem;">
-        <span class="platform-badge pb-ig">📷 Instagram</span>
-        <span class="platform-badge pb-li">💼 LinkedIn</span>
-        <span class="platform-badge pb-tt">🎵 TikTok</span>
-      </div>
-
-      <p>É um formato <strong>exclusivo destas três plataformas</strong>. No LinkedIn, o carrossel é criado carregando um ficheiro PDF — cada página torna-se um slide. No Instagram e TikTok, as imagens são carregadas diretamente.</p>
-    </div>
-    <div class="slide-footer">
-      <span class="slide-footer-label">Disponível no Instagram, LinkedIn e TikTok</span>
-    </div>
-  </div>
-
-  <!-- SLIDE 3: DADOS DE ENGAGEMENT -->
-  <div class="slide" data-slide="3">
-    <div class="accent-bar"></div>
-    <div class="slide-num">02 — Os números não mentem</div>
-    <div>
-      <h2>Mais envolvimento<br>do que <em>qualquer outro</em><br>formato</h2>
-      <p>Estudos analisando dezenas de milhões de publicações confirmam: os carrosséis geram consistentemente mais interações do que imagens simples ou vídeos.</p>
+      <h2>One Guy, His Mom,<br>And <em>Five Years</em></h2>
+      <p><strong>Niu Lai</strong> (牛来, roughly "Here Comes the Cow") follows a timid calf who has to find the courage to cross the desert with his herd. It was written, directed and almost entirely hand-animated — frame by frame, on second-hand computers — by first-time filmmaker <strong>Xin Yumeng</strong>, with his mother <strong>Sun Lifang</strong> contributing the story, voice work and the end-credits score. No studio. No investors. No AI tools. Released in Chinese cinemas on August 5, 2026 — with zero marketing.</p>
 
       <div class="stat-grid">
         <div class="stat-box">
-          <div class="stat-num">3×</div>
-          <div class="stat-label">mais envolvimento no LinkedIn vs. imagens e vídeos</div>
-          <div class="stat-source">Social Media Today, 2025</div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">years to make it, almost entirely alone</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">109%</div>
-          <div class="stat-label">mais interações por pessoa no Instagram vs. Reels</div>
-          <div class="stat-source">Buffer, análise de 45M+ posts</div>
+          <div class="stat-num">$0</div>
+          <div class="stat-label">outside investment or ad spend</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">21,8%</div>
-          <div class="stat-label">taxa de envolvimento média dos carrosséis no LinkedIn</div>
-          <div class="stat-source">Buffer State of Social, 2026</div>
+          <div class="stat-num">86</div>
+          <div class="stat-label">minute runtime, zero AI-generated frames</div>
         </div>
       </div>
-    </div>
-    <div class="slide-footer">
-      <span class="slide-footer-label">Fontes: Buffer, Social Media Today, Social Insider — 2025/2026</span>
+      <div class="stat-source">Sources: Guancha, Sina Entertainment, SCMP director interviews</div>
     </div>
   </div>
 
-  <!-- SLIDE 4: PORQUÊ FUNCIONA -->
+  <!-- SLIDE 3: THE FLOP -->
+  <div class="slide" data-slide="3">
+    <div class="accent-bar"></div>
+    <div class="slide-num">02 — The Flop</div>
+    <div>
+      <h2>It Opened To<br>An <em>Empty</em> Room</h2>
+      <p>Niu Lai launched with no trailer, no press and no official poster — theater staff drew their own promotional art by hand just to put something on the wall. Some cinemas ran it once a day, to near-empty houses.</p>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="stat-num">¥3,420</div>
+          <div class="stat-label">total box office, opening day (≈$480)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">¥7,705</div>
+          <div class="stat-label">cumulative total after 10 days</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">0</div>
+          <div class="stat-label">press releases, trailers or paid ads</div>
+        </div>
+      </div>
+      <div class="stat-source">The lowest opening for a Chinese animated theatrical release in 2026. Sources: Caixin, Sina.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: THE ZAG -->
   <div class="slide" data-slide="4">
     <div class="accent-bar"></div>
-    <div class="slide-num">03 — Porquê funciona tão bem</div>
+    <div class="slide-num">03 — The Zag</div>
     <div>
-      <h2>Dois tipos de<br><em>envolvimento</em></h2>
-      <p>O carrossel funciona em dois níveis ao mesmo tempo:</p>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(15,15,15,0.06); margin-top:1.25rem;">
-        <div style="background:var(--cream); padding:1.5rem;">
-          <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.75rem;">Envolvimento de conteúdo</div>
-          <p style="font-size:0.88rem; line-height:1.6; color:rgba(15,15,15,0.7);">O utilizador <strong>envolve-se com o tema</strong> — lê mais, aprende mais, explora mais. Um único slide não permite profundidade; o carrossel permite desenvolver uma ideia, contar uma história, apresentar um processo passo a passo.</p>
-        </div>
-        <div style="background:var(--cream); padding:1.5rem;">
-          <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.75rem;">Envolvimento de plataforma</div>
-          <p style="font-size:0.88rem; line-height:1.6; color:rgba(15,15,15,0.7);">Cada deslize é um <strong>sinal de interação</strong> para o algoritmo. Tempo de visualização, cliques, deslizes, guardados — o carrossel multiplica todos estes sinais numa só publicação, sinalizando ao algoritmo que o conteúdo é relevante.</p>
-        </div>
-      </div>
+      <h2>Everyone Else Was<br>Chasing <em>Perfect</em></h2>
+      <p>2026 is the summer of AI-assisted animation — every studio racing to make each frame smoother and cleaner than the last. Niu Lai did the opposite: grass rendered as yellow blocks literally labelled "grass," snakes like bent springs, characters clipping through their own limbs. While the market zigged toward polish, one film — by accident, not by strategy — zagged toward the rawest thing on the release calendar.</p>
 
       <div class="algo-card">
-        <div class="algo-card-title">Como o algoritmo lê isto</div>
-        <p>Quanto mais tempo alguém passa na publicação e mais ações realiza (deslizar, guardar, comentar), mais o algoritmo considera que o conteúdo é valioso — e mais o distribui a outras pessoas.</p>
+        <div class="algo-card-title">The bet nobody placed on purpose</div>
+        <p>Niu Lai wasn't a marketing strategy — it was a family with no budget finishing what they started. But it landed exactly on a market blind spot: an audience quietly exhausted by algorithmic polish, primed to reward the one thing a machine can't fake — visible, unmistakable human effort.</p>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: PODER ESPECIAL INSTAGRAM -->
+  <!-- SLIDE 5: THE TURN / BOX OFFICE -->
   <div class="slide" data-slide="5">
     <div class="accent-bar"></div>
-    <div class="slide-num">04 — O poder especial do Instagram</div>
+    <div class="slide-num">04 — The Turn</div>
     <div>
-      <h2>O único formato que<br>aparece <em>duas vezes</em><br>no feed</h2>
-      <p>No Instagram, os carrosséis têm uma vantagem única confirmada pelo próprio CEO da plataforma, Adam Mosseri:</p>
-
-      <div class="algo-card" style="margin-top:1.25rem;">
-        <div class="algo-card-title">Como funciona — confirmado pelo Instagram</div>
-        <p>"Se alguém vê o teu carrossel mas não desliza, damos frequentemente a esse carrossel uma segunda oportunidade — mostramo-lo novamente, começando pelo segundo slide."<br><br>— Adam Mosseri, CEO do Instagram, Threads, setembro 2025</p>
-      </div>
-
-      <p style="margin-top:1.25rem; font-size:0.9rem;">Nenhum outro formato tem este comportamento. Uma imagem estática ou um Reel que não gera interação desaparece do feed. O carrossel tem <strong>duas oportunidades de captar atenção</strong> — dois momentos para gerar um like, um comentário, uma partilha.</p>
-    </div>
-    <div class="slide-footer">
-      <span class="slide-footer-label">Meta's internal tests: carrosséis têm 1.4× mais alcance que imagens simples</span>
-    </div>
-  </div>
-
-  <!-- SLIDE 6: FUNIL — REELS VS CARROSSEL -->
-  <div class="slide" data-slide="6">
-    <div class="accent-bar"></div>
-    <div class="slide-num">05 — Estratégia de funil</div>
-    <div>
-      <h2>Reels para chegar.<br>Carrossel para <em>fidelizar</em>.</h2>
-      <p>Os dois formatos têm funções diferentes. A estratégia mais eficaz usa os dois em conjunto.</p>
-
-      <div class="funnel-wrap" style="margin-top:1.5rem;">
-        <div class="funnel-stage">
-          <div class="funnel-bar top"></div>
-          <div class="funnel-label">Topo do funil</div>
-          <div class="funnel-format">Reels</div>
-          <div class="funnel-desc">Ótimos para <strong>alcance e descoberta</strong>. Chegam a pessoas que ainda não te seguem. Mais virais, mas menos profundos.</div>
-        </div>
-        <div class="funnel-divider"></div>
-        <div class="funnel-stage">
-          <div class="funnel-bar mid"></div>
-          <div class="funnel-label">Meio do funil</div>
-          <div class="funnel-format">Carrosséis</div>
-          <div class="funnel-desc">Ideais para <strong>aprofundar a relação</strong> com quem já te segue. Mais tempo de leitura, mais valor, mais memorável.</div>
-        </div>
-      </div>
-
-      <div style="background:rgba(15,15,15,0.05); padding:1rem 1.25rem; margin-top:1.25rem; border-left:3px solid var(--accent2);">
-        <p style="font-size:0.85rem; max-width:none;"><strong>Em termos simples:</strong> os Reels trazem pessoas novas à porta. O carrossel é o que as convence a ficar — e a confiar em ti.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 7: COMPARATIVO DE DADOS -->
-  <div class="slide" data-slide="7">
-    <div class="accent-bar"></div>
-    <div class="slide-num">06 — Carrossel vs. outros formatos</div>
-    <div>
-      <h2>O formato que<br><em>lidera</em> em todas<br>as plataformas</h2>
-
-      <p style="margin-bottom:0.5rem;">Taxa de envolvimento por formato (mediana, dados de 2025/2026):</p>
+      <h2>Then The Internet<br>Found It</h2>
+      <p>Clips started circulating around August 14 — not as promotion, but as ridicule. Curiosity did the rest. "Watching it costs you 86 minutes of regret. Not watching it costs you a lifetime" became the film's unofficial tagline — quoted, unironically, by the people buying tickets.</p>
 
       <div class="engage-bars">
-        <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.25rem;">LinkedIn</div>
+        <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-bottom:0.25rem;">Cumulative box office (RMB)</div>
         <div class="engage-row">
-          <div class="engage-label">Carrossel</div>
-          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:100%; background:var(--accent2);"></div></div>
-          <div class="engage-val" style="color:var(--accent2);">21,8%</div>
+          <div class="engage-label">Day 10 · Aug 14</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:2%; background:rgba(15,15,15,0.15);"></div></div>
+          <div class="engage-val" style="color:rgba(15,15,15,0.5);">¥7,705</div>
         </div>
         <div class="engage-row">
-          <div class="engage-label">Vídeo</div>
-          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:34%; background:rgba(15,15,15,0.15);"></div></div>
-          <div class="engage-val" style="color:rgba(15,15,15,0.5);">7,3%</div>
+          <div class="engage-label">Day 14 · Aug 19</div>
+          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:54%; background:var(--accent2);"></div></div>
+          <div class="engage-val" style="color:var(--accent2);">¥24.4M</div>
         </div>
         <div class="engage-row">
-          <div class="engage-label">Imagem</div>
-          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:30%; background:rgba(15,15,15,0.1);"></div></div>
-          <div class="engage-val" style="color:rgba(15,15,15,0.4);">6,5%</div>
-        </div>
-
-        <div style="font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(15,15,15,0.35); margin-top:0.75rem; margin-bottom:0.25rem;">Instagram</div>
-        <div class="engage-row">
-          <div class="engage-label">Carrossel</div>
+          <div class="engage-label">Day 19 · Aug 24</div>
           <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:100%; background:var(--accent);"></div></div>
-          <div class="engage-val" style="color:var(--accent);">6,9%</div>
-        </div>
-        <div class="engage-row">
-          <div class="engage-label">Imagem</div>
-          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:64%; background:rgba(15,15,15,0.15);"></div></div>
-          <div class="engage-val" style="color:rgba(15,15,15,0.5);">4,4%</div>
-        </div>
-        <div class="engage-row">
-          <div class="engage-label">Reels</div>
-          <div class="engage-bar-wrap"><div class="engage-bar-fill" style="width:48%; background:rgba(15,15,15,0.1);"></div></div>
-          <div class="engage-val" style="color:rgba(15,15,15,0.4);">3,3%</div>
+          <div class="engage-val" style="color:var(--accent);">¥45.2M+</div>
         </div>
       </div>
     </div>
     <div class="slide-footer">
-      <span class="slide-footer-label">Fonte: Buffer, análise de 52M+ posts, 2026</span>
+      <span class="slide-footer-label">≈$6.3M USD by day 19 · nearly 6,000× growth in under two weeks · Maoyan, Caixin, SCMP</span>
     </div>
   </div>
 
-  <!-- SLIDE 8: ESPECIFICAÇÕES -->
-  <div class="slide" data-slide="8">
+  <!-- SLIDE 6: WHY IT WORKED -->
+  <div class="slide" data-slide="6">
     <div class="accent-bar"></div>
-    <div class="slide-num">07 — Especificações técnicas</div>
+    <div class="slide-num">05 — Why It Worked</div>
     <div>
-      <h2>Dimensões e<br><em>limites</em> por plataforma</h2>
+      <h2>Imperfection Became<br>The <em>Premium</em></h2>
+      <p>As AI-generated content floods every feed, audiences have started treating visible human flaws as a trust signal instead of a defect. Chinese commentators coined a phrase for it: <strong>活人感</strong> — "the feel of a living person."</p>
 
-      <div class="specs-wrap">
-        <div class="spec-row header">
-          <div class="spec-cell"></div>
-          <div class="spec-cell">📷 Instagram</div>
-          <div class="spec-cell">💼 LinkedIn</div>
-          <div class="spec-cell">🎵 TikTok</div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-cell">Formato ideal</div>
-          <div class="spec-cell"><span class="spec-highlight">1080 × 1350 px</span><br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">retrato 4:5</span></div>
-          <div class="spec-cell"><span class="spec-highlight">1080 × 1080 px</span><br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">quadrado 1:1</span></div>
-          <div class="spec-cell"><span class="spec-highlight">1080 × 1920 px</span><br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">vertical 9:16</span></div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-cell">N.º de slides</div>
-          <div class="spec-cell">Até <strong>20</strong> slides<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">ideal: 6–13</span></div>
-          <div class="spec-cell">Até <strong>300</strong> páginas<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">ideal: 6–12</span></div>
-          <div class="spec-cell"><strong>4 a 35</strong> imagens<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">ideal: 6–10</span></div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-cell">Ficheiro</div>
-          <div class="spec-cell">JPG / PNG<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">máx. 8 MB/slide</span></div>
-          <div class="spec-cell"><span class="spec-highlight">PDF</span> / PPT / DOC<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">máx. 100 MB total</span></div>
-          <div class="spec-cell">JPG / PNG<br><span style="font-size:0.72rem;color:rgba(15,15,15,0.45);">máx. 500 MB total</span></div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-cell">Nota</div>
-          <div class="spec-cell" style="font-size:0.78rem; color:rgba(15,15,15,0.6);">O primeiro slide define o ratio de todos os outros</div>
-          <div class="spec-cell" style="font-size:0.78rem; color:rgba(15,15,15,0.6);">Cada página do PDF = 1 slide</div>
-          <div class="spec-cell" style="font-size:0.78rem; color:rgba(15,15,15,0.6);">Pode adicionar música de fundo</div>
-        </div>
+      <div class="algo-card">
+        <div class="algo-card-title">The cultural read</div>
+        <p>"In an environment where audiences have learned to distrust polish, they'd rather have something visibly, imperfectly human than something slickly synthetic." Critics went further, comparing Niu Lai's cult trajectory to <em>The Room</em> and calling it "the Chinese Mulholland Drive" of so-bad-it's-good cinema — a midnight-movie phenomenon compressed into two weeks.</p>
       </div>
     </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label">Sources: SCMP, Fast Company, Tatler Asia</span>
+    </div>
   </div>
 
-  <!-- SLIDE 9: COMO PUBLICAR -->
-  <div class="slide" data-slide="9">
+  <!-- SLIDE 7: SENTIMENT BY PLATFORM -->
+  <div class="slide" data-slide="7">
     <div class="accent-bar"></div>
-    <div class="slide-num">08 — Como publicar</div>
+    <div class="slide-num">06 — Sentiment, Platform By Platform</div>
     <div>
-      <h2>Passo a passo<br>em cada <em>plataforma</em></h2>
+      <h2>Same Movie,<br>Four Different <em>Reactions</em></h2>
 
       <div class="platform-section">
+        <div class="platform-block">
+          <div class="platform-block-head">
+            <div class="platform-icon pi-wb">🔥</div>
+            <div class="platform-name">Weibo / Douyin</div>
+          </div>
+          <p>Where it started. Trending for two straight weeks. Viewers drove 30km just to "witness history," farmer and vet accounts fact-checked the cow's anatomy for laughs — alongside a backlash-to-the-backlash calling it "bad money driving out good money," pulling attention from better-made films.</p>
+        </div>
+        <div class="platform-block">
+          <div class="platform-block-head">
+            <div class="platform-icon pi-rd">👽</div>
+            <div class="platform-name">Reddit</div>
+          </div>
+          <p>Arrived around Aug 18. A r/Damnthatsinteresting post about the hand-drawn theater posters pulled 14,000+ upvotes and 220+ comments in a day. Tone: bemused fascination, instant comparisons to <em>The Room</em> and <em>Birdemic</em>, very little cynicism.</p>
+        </div>
+        <div class="platform-block">
+          <div class="platform-block-head">
+            <div class="platform-icon pi-x">✕</div>
+            <div class="platform-name">X (Twitter)</div>
+          </div>
+          <p>Pure meme format. One joke about seeing Niu Lai "in 70mm IMAX" passed 1,800 likes in a day. Mostly reposted clips and edits — the engagement <em>is</em> the review.</p>
+        </div>
         <div class="platform-block">
           <div class="platform-block-head">
             <div class="platform-icon pi-ig">📷</div>
             <div class="platform-name">Instagram</div>
           </div>
-          <div class="steps-inline">
-            <div class="step-item"><span class="step-num">1</span> Abrir a app</div>
-            <div class="step-item"><span class="step-num">2</span> Tocar em "+"</div>
-            <div class="step-item"><span class="step-num">3</span> Selecionar o ícone de múltiplas imagens</div>
-            <div class="step-item"><span class="step-num">4</span> Escolher até 20 imagens</div>
-            <div class="step-item"><span class="step-num">5</span> Editar cada slide individualmente</div>
-            <div class="step-item"><span class="step-num">6</span> Adicionar legenda e publicar</div>
-          </div>
-        </div>
-        <div class="platform-block">
-          <div class="platform-block-head">
-            <div class="platform-icon pi-li">💼</div>
-            <div class="platform-name">LinkedIn</div>
-          </div>
-          <div class="steps-inline">
-            <div class="step-item"><span class="step-num">1</span> Clicar em "Iniciar publicação"</div>
-            <div class="step-item"><span class="step-num">2</span> Clicar no ícone de documento (folha/clip)</div>
-            <div class="step-item"><span class="step-num">3</span> Carregar o ficheiro PDF</div>
-            <div class="step-item"><span class="step-num">4</span> Adicionar um título ao documento</div>
-            <div class="step-item"><span class="step-num">5</span> Escrever a legenda e publicar</div>
-          </div>
-        </div>
-        <div class="platform-block">
-          <div class="platform-block-head">
-            <div class="platform-icon pi-tt">🎵</div>
-            <div class="platform-name">TikTok</div>
-          </div>
-          <div class="steps-inline">
-            <div class="step-item"><span class="step-num">1</span> Tocar em "+" para criar</div>
-            <div class="step-item"><span class="step-num">2</span> Selecionar "Carregar"</div>
-            <div class="step-item"><span class="step-num">3</span> Escolher múltiplas imagens (ativa o modo carrossel)</div>
-            <div class="step-item"><span class="step-num">4</span> Adicionar música de fundo (opcional)</div>
-            <div class="step-item"><span class="step-num">5</span> Adicionar legenda e publicar</div>
-          </div>
+          <p>Reels and clip accounts drive the reach here — short loops of the clipping animation and the hand-drawn posters, minimal captioning. Lower discourse, higher raw shareability: it's a visual here, not a debate.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 10: BOAS PRÁTICAS -->
-  <div class="slide" data-slide="10">
+  <!-- SLIDE 8: THE SKEPTICS -->
+  <div class="slide" data-slide="8">
     <div class="accent-bar"></div>
-    <div class="slide-num">09 — Boas práticas</div>
+    <div class="slide-num">07 — Not Everyone's Laughing</div>
     <div>
-      <h2>O que torna um<br>carrossel <em>eficaz</em></h2>
+      <h2>The Backlash To<br>The <em>Backlash</em></h2>
+      <p>Virality this fast invites suspicion. Online theories accused the film of laundering local arts subsidies or buying "water army" bot engagement. Analysts who reviewed the production's scale called that unlikely — more consistent with a tiny, self-funded team than a coordinated scheme. One review of hashtag activity found roughly <strong>92% came from real, first-time viewers.</strong></p>
+      <p style="margin-top:1rem;">There's also a quieter, more sincere thread: once the mother-son backstory spread, a lot of the mockery softened into something closer to affection — with theater managers admitting they were torn, as one put it, between "morality and the punchline."</p>
+    </div>
+    <div class="slide-footer">
+      <span class="slide-footer-label">Sources: Sohu, The Paper, industry commentary</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: THE MARKETING LESSON -->
+  <div class="slide" data-slide="9">
+    <div class="accent-bar"></div>
+    <div class="slide-num">08 — The Marketing Lesson</div>
+    <div>
+      <h2>What To Steal<br>For Your Own <em>Feed</em></h2>
 
       <div class="tips-grid">
         <div class="tip-box">
           <div class="tip-num">01</div>
-          <div class="tip-title">Primeiro slide = capa</div>
-          <div class="tip-text">É a única coisa que a maioria das pessoas vê antes de decidir deslizar. Deve criar curiosidade, não dar tudo de imediato. Funciona como o título de um artigo.</div>
+          <div class="tip-title">Polish is the default now</div>
+          <div class="tip-text">When every competitor's content is AI-smooth, smooth stops being a differentiator. It becomes wallpaper.</div>
         </div>
         <div class="tip-box">
           <div class="tip-num">02</div>
-          <div class="tip-title">Segundo slide igualmente forte</div>
-          <div class="tip-text">No Instagram, o algoritmo pode mostrar o carrossel novamente começando pelo slide 2. Esse slide tem de ser suficientemente bom para despertar interesse por si só.</div>
+          <div class="tip-title">Constraints can't be faked</div>
+          <div class="tip-text">Audiences can tell manufactured "authenticity" from the real thing. Niu Lai's flaws were flaws, not a filter — that's exactly why they worked.</div>
         </div>
         <div class="tip-box">
           <div class="tip-num">03</div>
-          <div class="tip-title">Uma ideia por slide</div>
-          <div class="tip-text">Cada slide deve ter uma mensagem clara e simples. Demasiado texto ou informação num slide faz o utilizador desistir de deslizar. Menos é mais.</div>
+          <div class="tip-title">Let the audience write the joke</div>
+          <div class="tip-text">The film never explained itself. The internet supplied the captions, the comparisons, the memes. Give people something to finish, not something already finished.</div>
         </div>
         <div class="tip-box">
           <div class="tip-num">04</div>
-          <div class="tip-title">Último slide com ação</div>
-          <div class="tip-text">O slide final deve pedir algo: seguir a conta, comentar, guardar, ou visitar um link. Quem chegou ao fim está altamente envolvido — não percas essa oportunidade.</div>
-        </div>
-        <div class="tip-box">
-          <div class="tip-num">05</div>
-          <div class="tip-title">6 a 13 slides é o ideal</div>
-          <div class="tip-text">Dados de 2025 mostram que carrosséis com 6 a 13 slides têm as melhores taxas de conclusão. Menos de 4 parece incompleto; mais de 15 perde audiência pelo caminho.</div>
-        </div>
-        <div class="tip-box">
-          <div class="tip-num">06</div>
-          <div class="tip-title">Conteúdo para guardar</div>
-          <div class="tip-text">Carrosséis educativos, checklists, guias e resumos geram muitas vezes mais guardados do que outros formatos. Um "guardar" é o sinal mais forte que podes dar ao algoritmo.</div>
+          <div class="tip-title">The origin story is the product</div>
+          <div class="tip-text">Nobody was talking about the plot. They were talking about a mother and son on secondhand computers for five years. That story out-marketed any campaign budget.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 11: RESUMO FINAL -->
-  <div class="slide slide-final" data-slide="11">
-    <div class="slide-num" style="color:rgba(245,242,235,0.4);">Resumo</div>
+  <!-- SLIDE 10: FINAL / RECAP -->
+  <div class="slide slide-final" data-slide="10">
+    <div class="slide-num" style="color:rgba(245,242,235,0.4);">Recap</div>
     <div>
-      <h2>O carrossel é o formato<br>mais inteligente<br>para construir audiência</h2>
-      <p>Não é uma moda — é o formato que os algoritmos recompensam, que o público retém, e que melhor representa o teu conhecimento em profundidade.</p>
+      <h2>When The Market<br>Zigs Toward <em>Polish</em>,<br>Someone Always Zags</h2>
+      <p>Niu Lai never planned to be a case study. But it's a live reminder: in a feed full of synthetic perfection, the most disruptive thing you can post might be something honestly, visibly made by hand.</p>
 
       <div class="final-summary">
         <div class="final-item">
-          <div class="final-item-icon">🔄</div>
-          <div class="final-item-text"><strong style="color:white;">Aparece 2×</strong><br>no feed do Instagram</div>
+          <div class="final-item-icon">🐮</div>
+          <div class="final-item-text"><strong style="color:white;">5 years</strong><br>made almost entirely by one person</div>
         </div>
         <div class="final-item">
-          <div class="final-item-icon">📊</div>
-          <div class="final-item-text"><strong style="color:white;">21,8%</strong><br>envolvimento no LinkedIn</div>
+          <div class="final-item-icon">📉</div>
+          <div class="final-item-text"><strong style="color:white;">¥7,705</strong><br>total box office, first 10 days</div>
         </div>
         <div class="final-item">
-          <div class="final-item-icon">🎯</div>
-          <div class="final-item-text"><strong style="color:white;">Meio do funil</strong><br>fideliza quem já te segue</div>
+          <div class="final-item-icon">📈</div>
+          <div class="final-item-text"><strong style="color:white;">¥45M+</strong><br>box office by day 19 — still climbing</div>
         </div>
         <div class="final-item">
-          <div class="final-item-icon">📄</div>
-          <div class="final-item-text"><strong style="color:white;">6–13 slides</strong><br>é o número ideal</div>
+          <div class="final-item-icon">🔁</div>
+          <div class="final-item-text"><strong style="color:white;">~6,000×</strong><br>growth, driven entirely by word of mouth</div>
         </div>
       </div>
     </div>
     <div class="slide-footer">
-      <span class="slide-footer-label" style="color:rgba(245,242,235,0.5);">Dados: Buffer, Social Insider, Social Media Today — 2025/2026</span>
+      <span class="slide-footer-label" style="color:rgba(245,242,235,0.5);">Sources: SCMP, Caixin, Guancha, Sina, Kotaku, Sohu — Aug 2026. Save this for your next campaign brief.</span>
     </div>
   </div>
 
 </div>
 
 <div class="controls">
-  <button class="btn-nav" id="btnPrev" onclick="changeSlide(-1)">← Anterior</button>
-  <button class="btn-nav primary" id="btnNext" onclick="changeSlide(1)">Seguinte →</button>
+  <button class="btn-nav" id="btnPrev" onclick="changeSlide(-1)">← Previous</button>
+  <button class="btn-nav primary" id="btnNext" onclick="changeSlide(1)">Next →</button>
 </div>
 
 <script>
@@ -988,7 +825,7 @@
     document.querySelector('[data-slide="' + n + '"]').classList.add('visible');
     current = n;
     document.getElementById('btnPrev').style.opacity = n === 1 ? '0.3' : '1';
-    document.getElementById('btnNext').textContent = n === total ? '✓ Fim' : 'Seguinte →';
+    document.getElementById('btnNext').textContent = n === total ? '✓ End' : 'Next →';
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
